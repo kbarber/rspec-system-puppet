@@ -22,10 +22,10 @@ module RSpecSystem::Helpers
     # @return [RSpecSystem::Result] raw execution results
     def execute
       node = opts[:node]
-      
+
       cmd = "facter --yaml"
       cmd += " --puppet" if opts[:puppet]
-      
+
       sh = shell :c => cmd, :n => node
 
       rd = sh.to_hash

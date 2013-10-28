@@ -30,12 +30,12 @@ module RSpecSystem::Helpers
             shell :c => 'rpm -ivh http://yum.puppetlabs.com/el/5/products/x86_64/puppetlabs-release-5-7.noarch.rpm', :n => node
           end
         end
-        shell :c => 'yum install -y puppet', :n => node
+        shell :c => 'yum install -y puppet facter', :n => node
       elsif facts['osfamily'] == 'Debian'
         shell :c => "wget http://apt.puppetlabs.com/puppetlabs-release-#{facts['lsbdistcodename']}.deb", :n => node
         shell :c => "dpkg -i puppetlabs-release-#{facts['lsbdistcodename']}.deb", :n => node
         shell :c => 'apt-get update', :n => node
-        shell :c => 'apt-get install -y puppet', :n => node
+        shell :c => 'apt-get install -y puppet facter', :n => node
       end
 
       # Prep modules dir
