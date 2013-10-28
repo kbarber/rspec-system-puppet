@@ -20,11 +20,11 @@ module RSpecSystem::Helpers
       # Grab PL repository and install PL copy of puppet
       log.info "Starting installation of puppet from PL repos"
       if facts['osfamily'] == 'RedHat'
+        rel = facts['operatingsystemrelease']
         if facts['operatingsystem'] == 'Fedora'
-          # Fedora testing is probably the best for now
-          shell :c => 'sed -i "0,/RE/s/enabled=0/enabled=1/" /etc/yum.repos.d/fedora-updates-testing.repo', :n => node
+          shell :c => "rpm -ivh http://yum.puppetlabs.com/fedora/f#{rel}/products/x86_64/puppetlabs-release-#{rel}-7.noarch.rpm", :n => node
         else
-          if facts['operatingsystemrelease'] =~ /^6\./
+          if rel =~ /^6\./
             shell :c => 'rpm -ivh http://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-6-7.noarch.rpm', :n => node
           else
             shell :c => 'rpm -ivh http://yum.puppetlabs.com/el/5/products/x86_64/puppetlabs-release-5-7.noarch.rpm', :n => node
