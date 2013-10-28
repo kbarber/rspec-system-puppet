@@ -4,9 +4,14 @@ describe "installation tasks" do
   let(:test_path) do
     proj_root + 'spec' + 'fixtures' + 'mymodule'
   end
- 
+
   it "check puppet_install works" do
     puppet_install()
+
+    shell('puppet --verson') do |r|
+      r.stderr.should == ''
+      r.exit_code.should == 0
+    end
   end
 
   it 'check puppet_master_install works' do

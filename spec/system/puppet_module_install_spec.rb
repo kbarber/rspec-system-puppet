@@ -9,8 +9,8 @@ describe "helper puppet_module_install" do
     EOS
     puppet_apply(pp) do |r|
       r.stdout.should =~ /Param1: bar/
-      r.stderr.should be_empty
-      r.exit_code.should be_zero
+      r.stderr.should == ''
+      r.exit_code.should == 0
     end
   end
 end
