@@ -17,5 +17,6 @@ Gem::Specification.new do |s|
 
   # Dependencies
   s.required_ruby_version = '>= 1.8.7'
-  s.add_runtime_dependency "rspec-system", '~> 2.0'
+  # TODO: restore this before shipping this branch
+#  s.add_runtime_dependency "rspec-system", '~> 2.0'
 end
